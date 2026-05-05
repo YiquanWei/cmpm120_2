@@ -44,7 +44,7 @@ class TitleScene extends Phaser.Scene {
             align: "center"
         }).setOrigin(0.5);
 
-        this.add.text(400, 450, "A / D or Arrow Keys: Move\nSPACE: Throw bananas\nPress SPACE to Start", {
+        this.add.text(400, 450, "A / D or Arrow Keys: Move\nSPACE: Throw bananas\nPress C for Credits\nPress SPACE to Start", {
             fontSize: "22px",
             color: "#ffffff",
             align: "center"
@@ -53,6 +53,8 @@ class TitleScene extends Phaser.Scene {
         this.spaceKey = this.input.keyboard.addKey(
             Phaser.Input.Keyboard.KeyCodes.SPACE
         );
+
+        this.keyC = this.input.keyboard.addKey("C");
     }
 
     update(time, delta) {
@@ -64,6 +66,10 @@ class TitleScene extends Phaser.Scene {
             this.spaceKey.enabled = false;
             this.scene.stop("titleScene");
             this.scene.start("movementScene");
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.keyC)) {
+            this.scene.start("creditsScene");
         }
     }
 }

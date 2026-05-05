@@ -19,7 +19,7 @@ const config = {
         }
     },
 
-    scene: [TitleScene, MovementScene]
+    scene: [TitleScene, CreditsScene, MovementScene]
 };
 
 new Phaser.Game(config);
