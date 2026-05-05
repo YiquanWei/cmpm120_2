@@ -15,6 +15,10 @@ class MovementScene extends Phaser.Scene {
 
         this.load.image("heart", "hud_heart.png");
         this.load.image("heartEmpty", "hud_heart_empty.png");
+
+        this.load.audio("loseHealth", "loseHealth.ogg");
+        this.load.audio("questionsSolved", "questionsSolved.ogg");
+        this.load.audio("gainHealth", "gainHealth.ogg");
     }
 
     create() {
@@ -590,6 +594,7 @@ class MovementScene extends Phaser.Scene {
                     if (enemy.health <= 0) {
                         enemy.dead = true;
                         this.score += enemy.points;
+                        //this.sound.play("questionsSolved", { volume: 0.4 });
                     }
                 }
             }
@@ -618,6 +623,7 @@ class MovementScene extends Phaser.Scene {
 
                 if (this.health < this.maxHealth) {
                     this.health += 1;
+                    this.sound.play("gainHealth", { volume: 0.5 });
                 }
             }
         }
@@ -636,6 +642,7 @@ class MovementScene extends Phaser.Scene {
         }
 
         this.health -= 1;
+        this.sound.play("loseHealth", { volume: 0.5 });
 
         this.player.setTint(0xff0000);
 
@@ -690,7 +697,7 @@ class MovementScene extends Phaser.Scene {
         if (this.gameOver || this.gameWon) {
             return;
         }
-        
+
         if (won) {
             this.gameWon = true;
         } else {
