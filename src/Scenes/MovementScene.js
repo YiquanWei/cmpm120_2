@@ -19,6 +19,8 @@ class MovementScene extends Phaser.Scene {
         this.load.audio("loseHealth", "loseHealth.ogg");
         this.load.audio("questionsSolved", "questionsSolved.ogg");
         this.load.audio("gainHealth", "gainHealth.ogg");
+
+        this.load.audio("bgm", "05042026.m4a");
     }
 
     create() {
@@ -29,6 +31,16 @@ class MovementScene extends Phaser.Scene {
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.keyR = this.input.keyboard.addKey("R");
         this.keyT = this.input.keyboard.addKey("T");
+
+        if (!this.sound.get("bgm")) {
+            this.bgm = this.sound.add("bgm", {
+                volume: 0.35,
+                loop: true
+            });
+
+            this.bgm.play();
+        }
+
 
         this.init_game();
     }
